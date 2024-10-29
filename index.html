@@ -83,6 +83,58 @@
       .swiper-slide img{
         border-radius: 25px;
       }
+      .npbutton{
+        position: absolute;
+        height: 100px;
+        width: 100%;
+         z-index: 20;
+        transform: translate(-50%,-50%);
+        top: 50%;
+        left: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 93%;
+      }
+
+      .npbutton button{
+        height: 50px;
+        width: 50px;
+        background: transparent;
+        color: white;
+        border-radius: 50%;
+        border: 2px solid #4FD1C5;
+        display: grid;
+        place-items: center;
+
+      }
+      .npbutton button:hover,.popover-content button:hover{
+        background: #4FD1C5;
+      }
+      .popover-content{
+        height: 100vh;
+        width: 100%;
+        background: #100e2d;
+        display: grid;
+        place-items: center;
+        position: relative;
+      }
+      .popover-content button{
+         padding: 15px;
+        background: transparent;
+        color: white;
+        border-radius: 50%;
+        border: 2px solid #4FD1C5;
+        display: grid;
+        place-items: center;
+        position: absolute;
+        right: 5%;
+        top: 5%;
+
+      }
+      .popover-content button svg{
+        zoom: 0.6;
+      }
       @media(max-width: 710px){
         .swiper-slide img{
         border-radius: 8px;
@@ -111,7 +163,7 @@
           <button id="mobile-menu-button" class="text-4xl text-white md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              height="48px"
+              height="35px"
               viewBox="0 -960 960 960"
               width="48px"
               fill="#FFFFFF"
@@ -1638,272 +1690,248 @@
     <!-- Create popovers for each box -->
     <div id="popover-1" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 1</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=TripleDimensionsIceAge&bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-2" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 2</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=DeliciousDuos&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-3" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 3</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=HalloweenKlondike&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-4" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 4</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=1010Halloween&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-5" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 5</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=FlowerWorld2&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-6" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 6</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=MontanaSolitaire&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-7" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 7</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=PyramidSolitaire-AncientChina&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-8" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 8</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=ChristmasDimensions&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-9" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 9</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=AladdinSolitaire&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-10" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 10</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=EasterIslandSolitaire&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-11" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 11</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=MusicMahjong&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-12" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 12</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=ABCTiles&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-13" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 13</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=RedAndGreen2&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-14" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 14</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=MysteriousPirateJewels3&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-15" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 15</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=NinjaBreakout&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-16" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 16</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=FindTheOddOneOut&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-17" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 17</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=HiddenSpotsTrains&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-18" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 18</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=BalloonMaze&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-19" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 19</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=CubeBlock&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-20" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 20</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=SpiteAndMaliceExtreme&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-21" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 21</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=GargantuaDoubleKlondike&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-22" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 22</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=ChristmasConnect&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-23" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 23</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=FlowerSolitaire&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
     <div id="popover-24" class="popover">
       <div class="popover-content">
-        <h2 class="text-lg font-bold">Popover for Box 24</h2>
-        <div>
+         <div>
           <script src="https://cdn.htmlgames.com/embed.js?game=IndianSolitaire&amp;bgcolor=white"></script>
         </div>
         <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
-          Close
+          <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#FFFFFF"><path d="m251.33-204.67-46.66-46.66L433.33-480 204.67-708.67l46.66-46.66L480-526.67l228.67-228.66 46.66 46.66L526.67-480l228.66 228.67-46.66 46.66L480-433.33 251.33-204.67Z"/></svg>
         </button>
       </div>
     </div>
 
 
 
-    <div class="swiper mySwiper w-full bg-[#100e2d] ">
+    <div class="swiper mySwiper w-full bg-[#100e2d] relative">
         <div class="swiper-wrapper ">
             <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_dungeons_and_dragons_09_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
             <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_worshippers_of_cthulhu_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
@@ -1914,8 +1942,12 @@
           <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_watcher_of_realms_01_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
           <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_assault_fire_01_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
          </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+      
+
+        <div class="npbutton">
+            <button class="button-prev"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/></svg></button>
+            <button class="button-next"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg></button>
+        </div>
       </div>
 
     <script>
@@ -1969,8 +2001,8 @@ window.alert = function() {
 <script>
   var swiper = new Swiper(".mySwiper", {
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".button-next",
+      prevEl: ".button-prev",
      
     },
     loop: true,
