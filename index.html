@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Separate Popover for Each Grid Box</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4FD1C5",
+              secondary: "#2D3748",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Custom styles for the popovers */
+      .popover {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+      }
+      .popover-content {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        overflow-y: auto;
+      }
+      nav a {
+        color: white;
+      }
+      body {
+        background: black !important;
+      }
+      .gamesectionbox {
+        background: #100e2d;
+        overflow: hidden;
+        border-radius: 10px;
+        padding: 10px;
+        padding-bottom: 20px !important;
+      }
+      .gamesectionbox img {
+        border-radius: 10px;
+        width: 100% !important;
+      }
+      .gameinfobox {
+        width: 100%;
+        margin-top: 35px;
+      }
+      .gameinfobox h3 {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-align: left;
+      }
+      .gameinfobox p {
+        font-size: 0.7rem;
+        text-align: left;
+        margin-top: 10px;
+      }
+      .swiper-slide img{
+        border-radius: 25px;
+      }
+      @media(max-width: 710px){
+        .swiper-slide img{
+        border-radius: 8px;
+      }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <header class="bg-black py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="flex items-center">
+          <span class="text-3xl font-bold text-primary">VEx - G</span>
+        </div>
+        <nav class="hidden md:flex space-x-10">
+          <a href="#" class="text-primary">HOME</a>
+          <a href="#" class="hover:text-primary">GALLERY</a>
+          <a href="#" class="hover:text-primary">GAMES</a>
+          <a href="#" class="hover:text-primary">MORE</a>
+        </nav>
+        <div class="flex items-center space-x-4">
+          <button
+            class="bg-primary text-white px-4 py-2 rounded-full hidden md:block"
+          >
+            JOIN US NOW
+          </button>
+          <button id="mobile-menu-button" class="text-4xl text-white md:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#FFFFFF"
+            >
+              <path
+                d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav id="mobile-menu" class="hidden md:hidden bg-secondary">
+      <a href="#" class="block py-2 px-4 text-primary">HOME</a>
+      <a href="#" class="block py-2 px-4 hover:text-primary">GALLERY</a>
+      <a href="#" class="block py-2 px-4 hover:text-primary">GAMES</a>
+      <a href="#" class="block py-2 px-4 hover:text-primary">MORE</a>
+    </nav>
+
+    <main
+      class="relative min-h-screen flex items-center justify-center"
+      style="
+        background-image: url('https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_sins_of_a_solar_empire_2_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen');
+        background-size: cover;
+        background-position: center;
+      "
+    >
+      <div class="absolute inset-0 bg-black opacity-50"></div>
+      <div class="relative z-10 text-center">
+        <h1 class="text-3xl md:text-6xl font-bold mb-4 text-white">
+          WELCOME TO VALTARA
+        </h1>
+        <h2 class="text-3xl md:text-7xl font-bold mb-8 text-white">
+          ONLINE <span class="text-primary">GAMING SITE</span>
+        </h2>
+        <p class="mb-8 max-w-2xl mx-auto text-gray-200">
+          Pork chop pastrami meatball, picanha salami capicola drumstick tri-tip
+          flank short loin strip steak prosciutto leberkas jowl fatback. Alcatra
+          kielbasa sausage, turkey short ribs shank bresaola.
+        </p>
+        <button class="bg-primary text-white px-8 py-3 rounded-full text-xl">
+          Let's Play
+        </button>
+      </div>
+    </main>
+
+    <div class="w-full py-10">
+      <h2 class="font-bold text-4xl text-white text-center">
+        TOP POPULAR <span class="text-primary">GAMES</span>
+      </h2>
+    </div>
+
+    <div class="container mx-auto p-4 lg:p-10">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-4 gap-3"
+      >
+        <!-- Create 25 grid boxes -->
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="1"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/triple-dimensions-ice-age-300.webp"
+            alt=""
+          />
+
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Triple Dimensions - Ice Age</h3>
+            <p>
+              Remove all tiles in this Ice Age 3D mahjong game. Move tiles to
+              the bar on the right. 3 of the same tiles in the bar will be
+              removed.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="2"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/deliciousduos300200.webp"
+            alt=""
+          />
+
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Delicious Duos</h3>
+            <p>
+              Delicious Duos HTML5 game: Connect the same food items. The
+              connecting path cannot change direction more than 2 times.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="3"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/halloweenklondike300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Halloween Klondike</h3>
+            <p>
+              On the tableau place cards in descending order and alternate
+              color. Click on the top left stack to get a new open card.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="4"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/1010halloween300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>1010 Halloween</h3>
+            <p>
+              Halloween 1010 game with jewels. Drag the shapes on the grid and
+              try to complete rows and columns. Completed rows and columns are
+              remove from the grid.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="5"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/flowerworld2-300x200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Flower World 2</h3>
+            <p>
+              New levels for Flower World: match 3 game. Swap 2 flowers and
+              match 3 or more in a row. Reach the indicated goals.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="6"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/montanasolitaire300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Montana Solitaire</h3>
+            <p>
+              Arrange cards from 2 to King. Move a card to an empty spot that if
+              the card on the left is of the same suit and is one lower in
+              value.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="7"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/pyramidsolitaire-ancientchina300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Pyramid Solitaire</h3>
+            <p>
+              Ancient China HTML5 game: A Pyramid Solitaire game in Ancient
+              China. Remove all cards from the pagode by combining 2 cards to a
+              total value of 13.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="8"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/christmas-dimensions-300.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Christmas Dimensions</h3>
+            <p>
+              Play a Xmas Mahjong Game in 3 Dimensions. Click on two of the same
+              christmas blocks that have at least two adjacent free sides.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="9"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/aladdinsolitaire300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Aladdin Solitaire</h3>
+            <p>
+              Remove all cards by combining the same cards. Click on 2 of the
+              same open cards to remove the cards, click on the closed stack to
+              turn over 2 cards.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="10"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/easterislandsolitaire300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Easter Island Solitaire</h3>
+            <p>
+              Play a Tri-peaks game on Easter Island. Try to remove all cards by
+              selecting cards that are 1 higher or 1 lower in value than the
+              open card.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="11"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/musicmahjong300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Music Mahjong</h3>
+            <p>
+              A mahjong solitaire game full of music. Remove tiles in pairs of
+              the same free tiles. Try to free the tiles with the music notes.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="12"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/abctiles300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>ABC Tiles</h3>
+            <p>
+              Collect 3 of the same Tiles. Click on free tiles to move the tiles
+              to the bottom bar. If you get 3 of the same tiles on the bottom
+              bar than the tiles are removed.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="13"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/redandgreen2300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Red and Green 2</h3>
+            <p>
+              Shoot cannon balls and bump the creatures to their own sweets.
+              Move to aim and click to shoot.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="14"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/mysteriouspiratejewels3300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Mysterious Pirate Jewels 3</h3>
+            <p>
+              Remove all colored backgrounds in this match 3 game with 45 new
+              levels. Connect three or more of the same colored jewels to remove
+              the jewels and the backgrounds.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="15"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/ninjabreakout300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Ninja Breakout</h3>
+            <p>
+              Ninja Breakout HTML5 game: Breakout game with Ninja's. Try to
+              shoot all bricks.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="16"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/findtheoddout300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Find the Odd One Out</h3>
+            <p>
+              Find the Odd One Out HTML5 game: Find the Odd One Out. Click on
+              the character that is different than the others.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="17"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/hiddenspots-train300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Hidden Spots - Trains</h3>
+            <p>
+              Trains HTML5 game: Find all the hidden spots on the Train images.
+              Click on the image where you have spotted a hidden spot.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="18"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/balloonmaze300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Balloon Maze</h3>
+            <p>
+              Balloon Maze HTML5 game: Pop all the balloons. Move the ball
+              through the maze and hit all the balloons.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="19"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/cubeblock300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Cube Block</h3>
+            <p>
+              Cube Block HTML5 game: Shoot blocks and fill rows. Shoot the
+              blocks into the empty spaces of a row and fill rows.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="20"
+        >
+          <img
+            src="https://www.htmlgames.com/uploaded/game/thumb/spiteandmaliceextreme300200.webp"
+            alt=""
+          />
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Spite and Malice Extreme</h3>
+            <p>
+              The King is wild and can be used for any value. In this extreme
+              variant you are allowed to use the discard pile cards of your
+              opponent.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="21"
+        >
+        <img src="https://www.htmlgames.com/uploaded/game/thumb/gargantuadoubleklondike300200.webp" alt="">
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Gargantua Double Klondike</h3>
+            <p>
+                Try to move all cards to the 8 foundations (top). On the tableau you can build down on alternating color. 
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="22"
+        >
+        <img src="https://www.htmlgames.com/uploaded/game/thumb/christmasconnect300200.webp" alt="">
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Christmas Connect
+            </h3>
+            <p>
+                Mahjong connect game for Christmas. Connect two of the same tiles with a path that has no more than two turns of 90 degrees.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="23"
+        >
+        <img src="https://www.htmlgames.com/uploaded/game/thumb/flowersolitaire300200.webp" alt="">
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Flower Solitaire
+            </h3>
+            <p>
+                A Flower Klondike Solitaire game. Move all cards to the four foundations from Ace to King. On the tableau build down in alternating color.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+        <div
+          class="grid-box gamesectionbox text-white text-center cursor-pointer"
+          data-id="24"
+        >
+        <img src="https://www.htmlgames.com/uploaded/game/thumb/indiansolitaire300200.webp" alt="">
+          <div
+            class="flex rattingbox mt-[-40px] ml-2"
+            style="
+              align-items: center;
+              gap: 7px;
+              background-color: white;
+              width: max-content;
+              border-radius: 50px;
+              padding: 2px 15px;
+              z-index: 5;
+              position: relative;
+              transform: scale(0.7);
+            "
+          >
+            <span class="text-black"> 4.7 </span
+            ><img
+              style="height: 15px"
+              src="https://cdn-icons-png.flaticon.com/128/27/27223.png"
+              alt=""
+            />
+          </div>
+
+          <div class="gameinfobox">
+            <h3>Indian Solitaire
+            </h3>
+            <p>
+                Play Indian: a challenging Solitaire game. Move all cards to the 8 foundations. On the tableau you can build down on any color except the same suit.
+            </p>
+          </div>
+
+          <div
+            class="flex justify-between"
+            style="align-items: center !important"
+          >
+            <img
+              style="width: 80px !important; margin-top: 15px"
+              src="https://t4.ftcdn.net/jpg/05/51/01/61/360_F_551016167_Cl4yhQjQXJzKnHWcyKYB4Tswd9b3ftqa.jpg"
+              alt=""
+            />
+            <button
+              class="rounded"
+              style="
+                padding: 8px 25px;
+                border: 1px solid cyan;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                margin-top: 10px;
+                transform: scale(0.8);
+              "
+            >
+              Play Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create popovers for each box -->
+    <div id="popover-1" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 1</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=TripleDimensionsIceAge&bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-2" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 2</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=DeliciousDuos&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-3" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 3</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=HalloweenKlondike&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-4" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 4</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=1010Halloween&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-5" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 5</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=FlowerWorld2&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-6" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 6</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=MontanaSolitaire&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-7" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 7</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=PyramidSolitaire-AncientChina&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-8" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 8</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=ChristmasDimensions&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-9" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 9</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=AladdinSolitaire&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-10" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 10</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=EasterIslandSolitaire&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-11" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 11</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=MusicMahjong&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-12" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 12</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=ABCTiles&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-13" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 13</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=RedAndGreen2&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-14" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 14</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=MysteriousPirateJewels3&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-15" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 15</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=NinjaBreakout&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-16" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 16</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=FindTheOddOneOut&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-17" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 17</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=HiddenSpotsTrains&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-18" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 18</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=BalloonMaze&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-19" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 19</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=CubeBlock&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-20" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 20</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=SpiteAndMaliceExtreme&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-21" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 21</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=GargantuaDoubleKlondike&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-22" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 22</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=ChristmasConnect&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-23" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 23</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=FlowerSolitaire&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+    <div id="popover-24" class="popover">
+      <div class="popover-content">
+        <h2 class="text-lg font-bold">Popover for Box 24</h2>
+        <div>
+          <script src="https://cdn.htmlgames.com/embed.js?game=IndianSolitaire&amp;bgcolor=white"></script>
+        </div>
+        <button class="close-popover bg-red-500 text-white px-4 py-2 rounded">
+          Close
+        </button>
+      </div>
+    </div>
+
+
+
+    <div class="swiper mySwiper w-full bg-[#100e2d] ">
+        <div class="swiper-wrapper ">
+            <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_dungeons_and_dragons_09_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+            <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_worshippers_of_cthulhu_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+            <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_sins_of_a_solar_empire_2_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+          <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_frontier_hunter_01_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+          <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_ghost_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+          <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_ghost_02_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+          <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_watcher_of_realms_01_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+          <div class="swiper-slide p-3 sm:p-10"><img class="w-full" src="https://www.gamewallpapers.com/img_script/wallpaper_dir/img.php?src=wallpaper_assault_fire_01_2560x1440.jpg&height=450&width=800&fill-to-fit&sharpen" alt=""></div>
+         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+    <script>
+      const gridBoxes = document.querySelectorAll(".grid-box");
+      const popovers = document.querySelectorAll(".popover");
+      const closeButtons = document.querySelectorAll(".close-popover");
+
+      gridBoxes.forEach((box) => {
+        box.addEventListener("click", () => {
+          const id = box.getAttribute("data-id");
+          document.getElementById(`popover-${id}`).style.display = "block";
+        });
+      });
+
+      closeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          button.closest(".popover").style.display = "none";
+        });
+      });
+
+      // Close popover when clicking outside of it
+      popovers.forEach((popover) => {
+        popover.addEventListener("click", (e) => {
+          if (e.target === popover) {
+            popover.style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <script>
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+
+      // Override the alert function globally to disable it
+window.alert = function() {
+    alert("dhdh")
+};
+
+    </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+     
+    },
+    loop: true,
+  });
+</script>
+
+    
+  </body>
+</html>
